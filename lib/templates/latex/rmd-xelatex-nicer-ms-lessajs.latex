@@ -1,0 +1,130 @@
+\documentclass[12pt,article,oneside]{memoir}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{placeins}
+\usepackage{tabu}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{memoir-article-styles}
+\usepackage[american, british, norsk]{babel}
+\usepackage[babel]{csquotes}
+\usepackage[svgnames]{xcolor}
+\usepackage{soul}
+\usepackage[xetex, colorlinks=true, urlcolor=DarkSlateBlue,
+citecolor=DarkSlateBlue, filecolor=DarkSlateBlue, plainpages=false,
+pdfpagelabels, bookmarksnumbered]{hyperref}
+\usepackage{etoolbox}
+
+%% Pagestyle
+\pagestyle{kjh}
+
+$if(minted)$
+%% Minted requires that pygments be installed
+%% (http://pygments.org/) and that \write18 support be enabled in your
+%% tex compiler.
+\usepackage{minted}
+\usemintedstyle{tango} 
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+\setkeys{Gin}{width=1\@textwidth} 
+$endif$
+
+$if(listings)$
+\usepackage{listings}
+$endif$
+
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=r,basicstyle=\small\ttfamily}}{}
+$endif$
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+
+$if(tables)$
+\usepackage{longtable}
+$endif$
+
+$if(graphics)$
+\usepackage{graphicx}
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+$endif$
+
+$if(title)$
+\title{\bigskip \bigskip $title$$if(thanks)$\thanks{$thanks$}$endif$
+$if(subtitle)$\\ \large\textsc{$subtitle$}$endif$}
+$endif$ 
+
+$if(anonymous)$
+$else$
+\author{$for(author)$\normalsize $author.name$\vspace{0.03in}\newline\footnotesize\emph{$author.affiliation$}\vspace*{0.2in}\newline $sep$ \and $endfor$}
+$endif$
+\date{}
+
+\begin{document}  
+% Font specifications
+\setromanfont[Mapping=tex-text, Numbers={Proportional, OldStyle}, Ligatures=Common]{Minion Pro} 
+\setsansfont[Mapping=tex-text, Ligatures=Common]{Concourse T4} 
+\setmonofont[Mapping=tex-text,Scale=0.75]{PragmataPro Mono}
+
+% Graphics width modifier
+\setkeys{Gin}{width=1\textwidth}
+
+
+% Page and sectioning specifications
+\chapterstyle{article-4} 
+\pagestyle{kjh}
+\thispagestyle{empty}
+
+$if(date)$
+% Add date at top left corner.
+\published{$date$.}
+$endif$
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(abstract)$
+% The abstract goes here
+\begin{abstract}
+\noindent $abstract$ 
+\end{abstract}
+$endif$
+
+$if(keywords)$
+\hspace{\absleftindent}{\tiny\noindent Keywords: $keywords$.}
+$endif$
+
+$if(wordcount)$
+\hspace{\absleftindent}{\tiny\noindent Manuscript length: $wordcount$ words.}
+$endif$
+
+
+$if(toc)$
+% Code for including a ToC
+\bigskip
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+\newpage
+$endif$
+
+% Body text goes here
+\newpage\noindent
+$body$
+\indent
+\end{document}

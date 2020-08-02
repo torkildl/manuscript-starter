@@ -8,7 +8,11 @@
 \usepackage{colortbl}
 \usepackage{pdflscape}
 \usepackage{memoir-article-styles}
-\usepackage[american, british, norsk]{babel}
+$if(language)$
+\usepackage[$language$]{babel}
+$else$
+\usepackage[american,british]{babel}
+$endif$
 \usepackage[babel]{csquotes}
 \usepackage[svgnames]{xcolor}
 \usepackage{soul}
@@ -25,9 +29,9 @@ $if(minted)$
 %% (http://pygments.org/) and that \write18 support be enabled in your
 %% tex compiler.
 \usepackage{minted}
-\usemintedstyle{tango} 
+\usemintedstyle{tango}
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
-\setkeys{Gin}{width=1\@textwidth} 
+\setkeys{Gin}{width=1\@textwidth}
 $endif$
 
 $if(listings)$
@@ -63,10 +67,20 @@ $if(graphics)$
 \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 $endif$
 
+% A snippet needed by pandoc
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+  {\par}
+$endif$
+
 $if(title)$
 \title{\bigskip \bigskip $title$$if(thanks)$\thanks{$thanks$}$endif$
 $if(subtitle)$\\ \large\textsc{$subtitle$}$endif$}
-$endif$ 
+$endif$
 
 $if(anonymous)$
 $else$
@@ -74,10 +88,10 @@ $else$
 $endif$
 \date{}
 
-\begin{document}  
+\begin{document}
 % Font specifications
-\setromanfont[Mapping=tex-text, Numbers={Proportional, OldStyle}, Ligatures=Common]{Minion Pro} 
-\setsansfont[Mapping=tex-text, Ligatures=Common]{Concourse T4} 
+\setromanfont[Mapping=tex-text, Numbers={Proportional, OldStyle}, Ligatures=Common]{Minion Pro}
+\setsansfont[Mapping=tex-text, Ligatures=Common]{Concourse T4}
 \setmonofont[Mapping=tex-text,Scale=0.75]{PragmataPro Mono}
 
 % Graphics width modifier
@@ -85,7 +99,7 @@ $endif$
 
 
 % Page and sectioning specifications
-\chapterstyle{article-4} 
+\chapterstyle{article-4}
 \pagestyle{kjh}
 \thispagestyle{empty}
 
@@ -101,7 +115,7 @@ $endif$
 $if(abstract)$
 % The abstract goes here
 \begin{abstract}
-\noindent $abstract$ 
+\noindent $abstract$
 \end{abstract}
 $endif$
 
@@ -119,7 +133,10 @@ $if(toc)$
 \bigskip
 \hypersetup{linkcolor=black}
 \setcounter{tocdepth}{$toc-depth$}
+\begin{KeepFromToc}
+\newpage
 \tableofcontents
+\end{KeepFromToc}
 \newpage
 $endif$
 

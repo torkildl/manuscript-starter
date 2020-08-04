@@ -10,8 +10,10 @@
 \usepackage{memoir-article-styles}
 $if(language)$
 \usepackage[$language$]{babel}
+\newcommand{\bibliotitle}{Referanser}
 $else$
 \usepackage[american,british]{babel}
+\newcommand{References}
 $endif$
 \usepackage[babel]{csquotes}
 \usepackage[svgnames]{xcolor}

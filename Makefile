@@ -38,10 +38,10 @@ SRC = $(wildcard *.$(MEXT))
 PREFIX = lib
 
 ## LaTeX template
-LATEXTEMPLATE = rmd-xelatex-nicer-ms.latex
+LATEXTEMPLATE = rmd-xelatex-nicer-ms-lessajs.latex
 
 ## MS Word template
-DOCXTEMPLATE = $(PREFIX)/templates/docx/rmd-minion-reference.docx
+DOCXTEMPLATE = rmd-minion-reference.docx
 
 ## Pandoc options to use for all document types
 ##OPTIONS = markdown+simple_tables+table_captions+yaml_metadata_block+smart
@@ -77,10 +77,10 @@ TEX=$(SRC:.md=.tex)
 DOCX=$(SRC:.md=.docx)
 
 ## Standard usage
-all:	$(MD) $(HTML)
+default:	$(MD) $(HTML)
 
 ## Specific recipes
-md:	clean $(MD)
+md:	$(MD)
 pdf:	md $(PDFS)
 html:	md $(HTML)
 tex:	md $(TEX)
@@ -101,8 +101,11 @@ docx:	md $(DOCX)
 
 
 %.docx: %.md
-	$(PDBINS)/pandoc -r $(OPTIONS) -w docx  $(CITEPROC) --reference-doc=$(DOCXTEMPLATE) -o $@ $<
+	$(PDBINS)/pandoc -r $(OPTIONS) -w docx  $(CITEPROC) --reference-doc=$(PREFIX)/templates/docx/$(DOCXTEMPLATE) -o $@ $<
+
+view:	pdf
+	evince *.pdf
 
 clean:
-	rm -f *.html *.pdf *.tex *.docx
+	rm -f *.pdf *.tex *.docx
 

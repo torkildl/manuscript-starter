@@ -84,7 +84,7 @@ md:	$(MD)
 pdf:	md $(PDFS)
 html:	md $(HTML)
 tex:	md $(TEX)
-docx:	md $(DOCX)
+docx:	md tex $(DOCX)
 
 %.md:	%.Rmd
 	R --slave -e "knitr::knit('$<')"
@@ -99,9 +99,8 @@ docx:	md $(DOCX)
 %.pdf:	%.md
 	$(PDBINS)/pandoc -r $(OPTIONS) -s --pdf-engine=xelatex --template=$(PREFIX)/templates/latex/$(LATEXTEMPLATE) $(CITEPROC) $(PREAMBLE) -o $@ $<
 
-
-%.docx: %.md
-	$(PDBINS)/pandoc -r $(OPTIONS) -w docx  $(CITEPROC) --reference-doc=$(PREFIX)/templates/docx/$(DOCXTEMPLATE) -o $@ $<
+%.docx: %.tex
+	$(PDBINS)/pandoc --pdf-engine=xelatex -r $(OPTIONS) -w docx  -o $@ $<
 
 view:	pdf
 	evince *.pdf

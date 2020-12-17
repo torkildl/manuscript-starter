@@ -44,10 +44,35 @@ Nullam sem velit, egestas semper leo eu, eleifend varius dolor. Pellentesque dap
 
 Curabitur varius tincidunt efficitur. Maecenas lobortis velit ante, eu ultricies nisl elementum id. Cras tincidunt tortor risus, a sagittis tortor cursus lobortis. Cras lacus tortor, bibendum ut scelerisque nec, viverra eget massa. Donec ornare faucibus bibendum. Fusce ullamcorper sem sapien, eget lobortis dolor aliquet quis. Ut mattis enim at molestie iaculis. Pellentesque iaculis enim quis ipsum placerat aliquet.
 
-```{r a-chunk-with-a-summary}
+
+```r
 library(tidyverse)
+```
+
+```
+## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+```
+
+```
+## ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
+## ✔ tibble  3.0.4     ✔ dplyr   1.0.2
+## ✔ tidyr   1.1.2     ✔ stringr 1.4.0
+## ✔ readr   1.4.0     ✔ forcats 0.5.0
+```
+
+```
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(arsenal)
 tableby(mtcars)
+```
+
+```
+## Error: $ operator is invalid for atomic vectors
 ```
 
 Suspendisse ac tempus sem. Sed ut lacus sit amet massa scelerisque tempor. Vestibulum in odio porttitor, dapibus turpis sodales, tempor metus. Vivamus finibus fermentum lacus, at eleifend nunc rutrum ac. Mauris ultricies turpis arcu, vel aliquam mi maximus a. Suspendisse consequat velit pharetra, dignissim magna non, facilisis velit. Vivamus mattis maximus tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vestibulum ullamcorper ipsum id dictum. Quisque libero metus, semper ut lorem ultricies, dignissim sagittis justo. Pellentesque quis tellus tortor. Curabitur leo metus, malesuada in nisl a, interdum lobortis turpis.
@@ -57,9 +82,12 @@ Suspendisse ac tempus sem. Sed ut lacus sit amet massa scelerisque tempor. Vesti
 Nulla convallis orci massa, accumsan ultrices nulla volutpat eu. Morbi tincidunt lorem quis rutrum finibus. Suspendisse potenti. Maecenas nunc sem, aliquam et elementum in, auctor sed turpis. Donec purus felis, egestas quis erat ut, tristique posuere mi. Morbi volutpat est quis est porttitor bibendum. In sit amet ipsum ullamcorper, elementum purus quis, molestie ante. Aenean vel imperdiet enim. Duis non hendrerit ante. Pellentesque id nisl sollicitudin, mattis mauris finibus, suscipit nisi. Aenean ut iaculis tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur porttitor augue dolor, convallis suscipit libero fermentum vitae.
 
 
-```{r chunk-with-figure}
+
+```r
 ggplot(mtcars, aes(x=wt, y=hp))+ geom_point()
 ```
+
+![plot of chunk chunk-with-figure](figure/chunk-with-figure-1.png)
 
 ### A subsubsection
 

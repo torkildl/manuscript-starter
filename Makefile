@@ -4,20 +4,20 @@
 ## containing the paper you are writing. Assuming you are using the
 ## rest of the toolchain here, you can use it to create .html, .tex,
 ## and .pdf output files (complete with bibliography, if present) from
-## your markdown file. 
+## your markdown file.
 ## -	Change the paths at the top of the file as needed.
-## -	Using `make` without arguments will generate html, tex, and pdf 
+## -	Using `make` without arguments will generate html, tex, and pdf
 ## 	output files from all of the files with the designated markdown
-##	extension. The default is `.md` but you can change this. 
-## -	You can specify an output format with `make tex`, `make pdf`,  
+##	extension. The default is `.md` but you can change this.
+## -	You can specify an output format with `make tex`, `make pdf`,
 ## - 	`make html`, or `make docx`.
-## -	Doing `make clean` will remove all the .tex, .html, .pdf, and .docx files 
+## -	Doing `make clean` will remove all the .tex, .html, .pdf, and .docx files
 ## 	in your working directory. Make sure you do not have files in these
 ##	formats that you want to keep!
 ## -    Pandoc and related tools can be redirected using PDBINS, which is useful
 ##      if you need to recompile any pandoc-related binary due to library
-##      compatibility issues 
-## 
+##      compatibility issues
+##
 ##
 ##
 
@@ -38,14 +38,14 @@ SRC = $(wildcard *.$(MEXT))
 PREFIX = lib
 
 ## LaTeX template
-LATEXTEMPLATE = rmd-xelatex-nicer-ms-lessajs.latex
+LATEXTEMPLATE = ajs-like-manuscript.tex 
 
 ## MS Word template
 DOCXTEMPLATE = rmd-minion-reference.docx
 
 ## Pandoc options to use for all document types
 ##OPTIONS = markdown+simple_tables+table_captions+yaml_metadata_block+smart
-OPTIONS = markdown+simple_tables+table_captions+yaml_metadata_block
+OPTIONS = markdown+pipe_tables+footnotes+simple_tables+table_captions+yaml_metadata_block
 
 ## LITERATURE REFERENCES: CITEPROC + PREAMBLE
 ##
@@ -107,4 +107,3 @@ view:	pdf
 
 clean:
 	rm -f *.pdf *.tex *.docx
-
